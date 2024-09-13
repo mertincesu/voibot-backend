@@ -30,7 +30,6 @@ headers = {
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.9)
 
 # Predefined HR Assistant parameters
-# Predefined HR Assistant parameters
 HR_PDF_URL = "https://firebasestorage.googleapis.com/v0/b/voiage-67f40.appspot.com/o/pdfs%2Fdemo%2FVoiAssistantKnowledge.pdf?alt=media"
 HR_ROLE = "Voi AI Assistant, for FAQ question answering and providing information about Voi AI and its ipcoming product VoiBot"
 HR_CLASSES = {
@@ -89,7 +88,7 @@ def prompt_func(query, n):
 
 def openaiAPI(prompt, temp, max_tokens=100):
     data = {
-        "model": "gpt-4o",
+        "model": "gpt-4o-mini",
         "messages": [
             {
                 "role": "system",

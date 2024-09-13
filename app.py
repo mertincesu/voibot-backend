@@ -43,8 +43,8 @@ HR_CLASSES = {
 HR_AUTOMATIC_REPLIES = {
     "Company-related": "RAG",
     "Virtual-assistant related": "RAG",
-    "Other Topic": "Unfortunately, I am unable to help you with that.",
-    "Greeting": "Hello, I am an HR virtual assistant. How can I help you?",
+    "Other Topic": "Unfortunately, I am unable to help you with that. If you have any questions related to Voi AI or VoiBot, please feel free to ask!",
+    "Greeting": "Hello, I am Voi AI's virtual assistant. How can I help you?",
     "Not Understandable Word/Phrase": "I apologize, I didn't quite get that. Could you ask again?"
 }
 HR_SEGMENT_ASSIGNMENTS = {

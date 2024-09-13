@@ -30,22 +30,26 @@ headers = {
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.9)
 
 # Predefined HR Assistant parameters
-HR_PDF_URL = "https://firebasestorage.googleapis.com/v0/b/voiage-67f40.appspot.com/o/pdfs%2Fdemo%2FHuman_Resources_Manual.pdf?alt=media"
-HR_ROLE = "HR Assistant"
+# Predefined HR Assistant parameters
+HR_PDF_URL = "https://firebasestorage.googleapis.com/v0/b/voiage-67f40.appspot.com/o/pdfs%2Fdemo%2FVoiAssistantKnowledge.pdf?alt=media"
+HR_ROLE = "Voi AI Assistant, for FAQ question answering and providing information about Voi AI and its ipcoming product VoiBot"
 HR_CLASSES = {
-    "HR-related": "Questions about HR regulations, policies, processes etc.",
+    "Company-related": "Questions about the company (Voi AI), the product (VoiBot) etc.",
+    "Virtual-assistant related": "Questions about the assistant that is answering the questions, like 'what do you know?'",
     "Other Topic": "Inquiries/Statements non-related to HR",
     "Greeting": "Anything similar to Hey or How are you",
     "Not Understandable Word/Phrase": "Gibberish like eubcwucbi"
 }
 HR_AUTOMATIC_REPLIES = {
-    "HR-related": "RAG",
+    "Company-related": "RAG",
+    "Virtual-assistant related": "RAG",
     "Other Topic": "Unfortunately, I am unable to help you with that.",
     "Greeting": "Hello, I am an HR virtual assistant. How can I help you?",
     "Not Understandable Word/Phrase": "I apologize, I didn't quite get that. Could you ask again?"
 }
 HR_SEGMENT_ASSIGNMENTS = {
-    "HR-related": "unified",
+    "Company-related": "unified",
+    "Virtual-assistant related": "unified",
     "Other Topic": "unified",
     "Greeting": "unified",
     "Not Understandable Word/Phrase": "unified"
@@ -76,10 +80,10 @@ def prompt_func(query, n):
             f"Query: {query}"
         )
     elif n == 2:
-        prompt = "Rephrase the following sentence (make sure that your response has only the rephrased version and no additional words): I apologize, but I don't have the information you're looking for at the moment. Please let me know if there's anything else I can assist you with or if you have other HR-related questions."
+        prompt = "Rephrase the following sentence (make sure that your response has only the rephrased version and no additional words): I apologize, but I don't have the information you're looking for at the moment. Please let me know if there's anything else I can assist you with about Voi AI or VoiBot."
 
     elif n == 3:
-        prompt = "Rephrase the following sentence (make sure that your response has only the rephrased version and no additional words): Unfortunately, I am unable to help you with that. Please provide more specific questions related to HR topics."
+        prompt = "Rephrase the following sentence (make sure that your response has only the rephrased version and no additional words): Unfortunately, I am unable to help you with that. Please provide more specific questions related to Voi AI."
 
     return prompt
 
@@ -126,7 +130,7 @@ def get_best_matching_text(query, index):
             prompt = "Rephrase the following text (your response should only have the rephrased text and no additional words): " + reply
             result = openaiAPI(prompt, 0.9)
     else:
-        result = "Unfortunately, I am unable to help you with that. Please provide more specific questions related to HR topics."
+        result = "Unfortunately, I am unable to help you with that. Please provide more specific questions related to Voi AI."
 
     return result
 
@@ -171,6 +175,6 @@ def chat():
         print(f"Error processing request: {str(e)}")
         return jsonify({"error": "An error occurred while processing your request"}), 500
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
